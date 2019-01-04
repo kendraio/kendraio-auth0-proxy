@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "index.js", "use": "@now/node-server" }
+  ],
+  "env": {
+    "DOMAIN": "kendraio.eu.auth0.com",
+    "CLIENT_ID": "@auth0-id",
+    "CLIENT_SECRET": "@auth0-secret"
+  }
+}
