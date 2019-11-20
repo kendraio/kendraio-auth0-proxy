@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "description": "",
-  "main": "src/handler.js",
+  "main": "index.js",
   "scripts": {},
   "author": "",
   "license": "ISC",

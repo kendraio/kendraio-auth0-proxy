@@ -24,10 +24,19 @@ const checkJwt = jwt({
 });
 
 app.use(cors());
-app.use(checkJwt);
-
 
 app.use(require('body-parser').json());
+
+app.post('/refresh', (req, res) => {
+  const { refreshToken } = req.body;
+  if (!refreshToken) {
+    return res.status(400).send();
+  }
+  getFromRefreshToken(refreshToken).then(result => res.json(result));
+});
+
+app.use(checkJwt);
+
 
 const axios = require('axios');
 
@@ -54,6 +63,21 @@ async function getProfile(userId) {
   return profile;
 }
 
+async function getFromRefreshToken(refreshToken) {
+  const { data } = await axios({
+    method: 'post',
+    url: `https://www.googleapis.com/oauth2/v4/token`,
+    headers: { 'content-type': 'application/json' },
+    data: {
+      "client_id": process.env.G_ID,
+      "client_secret": process.env.G_SECRET,
+      "refresh_token": `${refreshToken}`,
+      "grant_type": "refresh_token"
+    }
+  });
+  return data;
+}
+
 app.get('/', (req,res) => res.send('Hello'));
 app.post('/', (req, res) => {
   const { userId } = req.body;
@@ -62,5 +86,6 @@ app.post('/', (req, res) => {
   }
   getProfile(userId).then(profile => res.json(profile));
 });
+
 
 app.listen(port, () => console.log(`Listening on port ${port}!`));

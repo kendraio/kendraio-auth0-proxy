@@ -6,6 +6,8 @@
   "env": {
     "DOMAIN": "kendraio.eu.auth0.com",
     "CLIENT_ID": "@auth0-id",
-    "CLIENT_SECRET": "@auth0-secret"
+    "CLIENT_SECRET": "@auth0-secret",
+    "G_ID": "@g-id",
+    "G_SECRET": "@g-secret"
   }
 }
