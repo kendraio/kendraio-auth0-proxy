@@ -50,7 +50,7 @@ app.post('/', checkJwt, async (req, res) => {
     const profile = await getProfile(req.user.sub);
     return res.json(profile);
   } catch (e) {
-    console.log(e);
+    console.log(e.message);
     return res.status(403).send({message: e.message});
   }
 });
