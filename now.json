@@ -1,4 +1,5 @@
 {
+  "name": "kendraio-auth0-proxy",
   "version": 2,
   "builds": [
     { "src": "index.js", "use": "@now/node-server" }
@@ -9,5 +10,8 @@
     "CLIENT_SECRET": "@auth0-secret",
     "G_ID": "@g-id",
     "G_SECRET": "@g-secret"
-  }
+  },
+  "routes": [
+    { "src": "/.*", "dest": "/index.js" }
+  ]
 }
